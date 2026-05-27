@@ -33,7 +33,7 @@ public class User
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String bio;
     private String avatarUrl;
 
@@ -63,7 +63,7 @@ public class User
 
 
     @Past(message = "DOB must be in the past")
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private LocalDate dob;
 
     private LocalDate premiumExpiry;

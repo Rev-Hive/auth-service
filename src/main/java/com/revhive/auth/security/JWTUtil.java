@@ -16,7 +16,8 @@ import java.util.function.Function;
 
 @Component
 public class JWTUtil {
-    private final String SECRET_KEY = "mySuperSecretKeyThatIsAtLeast32BytesLong!";
+    private final String SECRET_KEY =
+    "mySuperSecretKeyThatIsAtLeast32BytesLong!";
 
 
 

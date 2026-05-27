@@ -28,3 +28,18 @@ spec:
           env:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://service-registry:8761/eureka
+
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/revhive_db?createDatabaseIfNotExist=true
+
+            - name: SPRING_DATASOURCE_USERNAME
+              value: sourav
+
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: sourav@123
+
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: update
+
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: org.hibernate.dialect.MySQLDialect

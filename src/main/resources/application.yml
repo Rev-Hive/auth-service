@@ -4,18 +4,25 @@ server:
 spring:
   application:
     name: auth-service
+  profiles:
+    active: local
 
   config:
     import: "optional:configserver:"
 
   datasource:
-    url: jdbc:mysql://mysql-db:3306/revhive_db
+    url: jdbc:mysql://mysql-db:3306/revhive_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: sourav
     password: sourav@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 
   mail:
     host: smtp.gmail.com
