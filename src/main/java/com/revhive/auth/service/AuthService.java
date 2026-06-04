@@ -26,7 +26,7 @@ public class AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        String token = UUID.randomUUID().toString();
+        String token = com.revhive.auth.util.OtpUtil.generateOtp();
 
         user.setResetToken(token);
         user.setTokenExpiry(LocalDateTime.now().plusMinutes(15));
@@ -34,6 +34,15 @@ public class AuthService {
         userRepository.save(user);
 
         emailService.sendResetEmail(user.getEmail(), token);
+    }
+
+    public void verifyResetToken(String token) {
+        User user = userRepository.findByResetToken(token)
+                .orElseThrow(() -> new RuntimeException("Invalid OTP"));
+
+        if (user.getTokenExpiry().isBefore(LocalDateTime.now())) {
+            throw new RuntimeException("OTP expired");
+        }
     }
 
     public void resetPassword(String token, String newPassword) {

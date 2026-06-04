@@ -40,4 +40,15 @@ public class AuthController {
                 "Password updated"
         );
     }
+
+
+    @PostMapping("/verify-reset-token")
+    public ResponseEntity<String> verifyResetToken(
+            @RequestParam String token
+    ) {
+        authService.verifyResetToken(token);
+        return ResponseEntity.ok(
+                "Token is valid"
+        );
+    }
 }

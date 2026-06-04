@@ -10,12 +10,6 @@ spring:
   config:
     import: "optional:configserver:"
 
-  datasource:
-    url: jdbc:mysql://mysql-db:3306/revhive_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: sourav
-    password: sourav@123
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -23,21 +17,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: itsourav14@gmail.com
-    password: pjdtveecdkcxnjqt
-
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://service-registry:8761/eureka

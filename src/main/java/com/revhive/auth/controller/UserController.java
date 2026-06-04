@@ -1,9 +1,5 @@
 package com.revhive.auth.controller;
-
-
-import com.revhive.auth.dto.request.ChangePasswordRequest;
-import com.revhive.auth.dto.request.LoginRequest;
-import com.revhive.auth.dto.request.RegisterRequest;
+import com.revhive.auth.dto.request.*;
 import com.revhive.auth.dto.response.LoginResponse;
 import com.revhive.auth.dto.response.UserSearchDTO;
 import com.revhive.auth.model.User;
@@ -34,11 +30,7 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
 //    private final FollowService followService;
-
-
     // AUTH APIs
-
-
     @Operation(summary = "Register new user")
     @PostMapping("/api/auth/register")
     public ResponseEntity<?> register(
@@ -49,9 +41,7 @@ public class UserController {
                 "Incoming register request with email: {}",
                 request.getEmail()
         );
-
         User user = userService.register(request);
-
         return ResponseEntity.ok(user);
     }
 
@@ -225,6 +215,35 @@ public class UserController {
 
         return ResponseEntity.ok(
                 userService.searchUsers(query)
+        );
+    }
+
+    @PostMapping("/api/auth/verify-otp")
+    public ResponseEntity<String> verifyOtp(
+            @RequestBody VerifyOtpRequest request
+    ) {
+
+        userService.verifyOtp(
+                request.getEmail(),
+                request.getOtp()
+        );
+
+        return ResponseEntity.ok(
+                "Email verified successfully"
+        );
+    }
+
+    @PostMapping("/api/auth/resend-otp")
+    public ResponseEntity<String> resendOtp(
+            @RequestBody ResendOTPRequest request
+    ) {
+
+        userService.resendOtp(
+                request.getEmail()
+        );
+
+        return ResponseEntity.ok(
+                "OTP sent successfully"
         );
     }
 }

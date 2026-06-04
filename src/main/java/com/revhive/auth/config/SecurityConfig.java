@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/likes/**").permitAll()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
-                        .requestMatchers("/api/ai").permitAll()
+                        .requestMatchers("/api/ai").authenticated()
                         .requestMatchers("/api/v1/follows/**").authenticated()
                         .requestMatchers("/api/admin/stats").permitAll()
                         .requestMatchers(
