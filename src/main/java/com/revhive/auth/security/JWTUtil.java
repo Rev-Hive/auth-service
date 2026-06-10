@@ -33,6 +33,7 @@ public class JWTUtil {
                 .claim("userId", user.getId())
                 .claim("role",user.getRole().name())
                 .claim("premium", user.isPremium())
+                .claim("username",user.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 604800000))
                 .signWith(getSigningKey())
@@ -40,7 +41,7 @@ public class JWTUtil {
     }
     public String extractUsername(String token)
     {
-        return extractClaim(token, Claims::getSubject);
+        return extractAllClaims(token).get("username", String.class);
     }
 
     public Date extractExpiration(String token)

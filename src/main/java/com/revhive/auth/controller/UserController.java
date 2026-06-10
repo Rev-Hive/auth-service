@@ -50,7 +50,6 @@ public class UserController {
     public ResponseEntity<?> login(
             @Valid @RequestBody LoginRequest loginRequest
     ) {
-
         try {
 
             LoginResponse response =
